@@ -1,5 +1,15 @@
-// jest-dom adds custom jest matchers for asserting on DOM nodes.
-// allows you to do things like:
-// expect(element).toHaveTextContent(/react/i)
-// learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+
+// Mock window.confirm
+global.confirm = jest.fn(() => true);
+
+// Mock window.alert
+global.alert = jest.fn();
+
+// Mock setTimeout and clearTimeout for toast components
+global.setTimeout = jest.fn((callback: Function, delay: number) => {
+  callback();
+  return 1;
+}) as any;
+
+global.clearTimeout = jest.fn();
