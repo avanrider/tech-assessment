@@ -107,7 +107,7 @@ export default function Packages() {
       headerName: 'Status',
       cellRenderer: ({ value }: { value: boolean }) => (
         <span className={`px-2 py-1 rounded-full text-sm ${
-          value ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+          value ? 'bg-secondary-50 text-secondary-700' : 'bg-red-100 text-red-800'
         }`}>
           {value ? 'Available' : 'Unavailable'}
         </span>

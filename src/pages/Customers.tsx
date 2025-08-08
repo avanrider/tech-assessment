@@ -104,7 +104,7 @@ export default function Customers() {
       cellRenderer: ({ value }: { value: CustomerWithOrders['orderCounts'] }) => (
         <div className="space-x-2">
           <span className="text-primary-500">{value.pending} pending</span>
-          <span className="text-green-600">{value.completed} completed</span>
+          <span className="text-secondary-600">{value.completed} completed</span>
           <span className="text-red-600">{value.cancelled} cancelled</span>
         </div>
       )
