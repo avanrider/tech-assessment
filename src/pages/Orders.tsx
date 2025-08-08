@@ -157,7 +157,7 @@ export default function Orders() {
         <h1 className="text-2xl font-bold">Orders</h1>
         <button
           onClick={() => setModalOpen(true)}
-          className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+          className="flex items-center space-x-2 bg-primary-500 text-white px-4 py-2 rounded-md hover:bg-primary-600"
         >
           <Plus size={16} />
           <span>Add Order</span>

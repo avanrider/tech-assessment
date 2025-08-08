@@ -82,7 +82,7 @@ export function PackageForm({ package: pkg, onSubmit, onCancel }: PackageFormPro
             type="checkbox"
             checked={formData.isAvailable}
             onChange={(e) => setFormData(prev => ({ ...prev, isAvailable: e.target.checked }))}
-            className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            className="h-4 w-4 text-primary-500 focus:ring-primary-500 border-gray-300 rounded"
           />
           <span className="text-sm font-medium text-gray-700">Available</span>
         </label>
@@ -99,7 +99,7 @@ export function PackageForm({ package: pkg, onSubmit, onCancel }: PackageFormPro
         <button
           type="button"
           onClick={handleSubmit}
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          className="px-4 py-2 bg-primary-500 text-white rounded-md hover:bg-primary-600"
         >
           {pkg ? 'Update' : 'Create'}
         </button>

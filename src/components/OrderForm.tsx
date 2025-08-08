@@ -96,7 +96,7 @@ export function OrderForm({ order, customers, packages, onSubmit, onCancel }: Or
         <button
           type="button"
           onClick={handleSubmit}
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          className="px-4 py-2 bg-primary-500 text-white rounded-md hover:bg-primary-600"
         >
           {order ? 'Update' : 'Create'}
         </button>

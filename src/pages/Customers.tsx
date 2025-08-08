@@ -103,7 +103,7 @@ export default function Customers() {
       headerName: 'Orders',
       cellRenderer: ({ value }: { value: CustomerWithOrders['orderCounts'] }) => (
         <div className="space-x-2">
-          <span className="text-blue-600">{value.pending} pending</span>
+          <span className="text-primary-500">{value.pending} pending</span>
           <span className="text-green-600">{value.completed} completed</span>
           <span className="text-red-600">{value.cancelled} cancelled</span>
         </div>
@@ -119,7 +119,7 @@ export default function Customers() {
         <h1 className="text-2xl font-bold">Customers</h1>
         <button
           onClick={() => setModalOpen(true)}
-          className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+          className="flex items-center space-x-2 bg-primary-500 text-white px-4 py-2 rounded-md hover:bg-primary-600"
         >
           <Plus size={16} />
           <span>Add Customer</span>
