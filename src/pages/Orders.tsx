@@ -133,18 +133,21 @@ export default function Orders() {
     {
       field: 'customerDetails' as keyof OrderWithDetails,
       headerName: 'Customer',
+      sortable: true,
       cellRenderer: ({ value }: { value: ICustomer | undefined }) => 
         value ? value.name : 'Unknown Customer'
     },
     {
       field: 'packageDetails' as keyof OrderWithDetails,
       headerName: 'Package',
+      sortable: true,
       cellRenderer: ({ value }: { value: IPackage | undefined }) => 
         value ? `${value.name} ($${value.price})` : 'Unknown Package'
     },
     { 
       field: 'status' as keyof OrderWithDetails, 
       headerName: 'Status',
+      sortable: true,
       cellRenderer: ({ value }: { value: OrderWithDetails['status'] }) => <StatusBadge status={value} />
     }
   ];

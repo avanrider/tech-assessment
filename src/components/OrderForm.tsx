@@ -43,7 +43,7 @@ export function OrderForm({ order, customers, packages, onSubmit, onCancel }: Or
         <select
           value={formData.customerId}
           onChange={(e) => setFormData(prev => ({ ...prev, customerId: e.target.value }))}
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-primary-500"
         >
           <option value="">Select a customer</option>
           {customers.map(customer => (
@@ -60,7 +60,7 @@ export function OrderForm({ order, customers, packages, onSubmit, onCancel }: Or
         <select
           value={formData.packageId}
           onChange={(e) => setFormData(prev => ({ ...prev, packageId: e.target.value }))}
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-primary-500"
         >
           <option value="">Select a package</option>
           {packages.map(pkg => (
@@ -77,7 +77,7 @@ export function OrderForm({ order, customers, packages, onSubmit, onCancel }: Or
         <select
           value={formData.status}
           onChange={(e) => setFormData(prev => ({ ...prev, status: e.target.value as OrderStatusType }))}
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-primary-500"
         >
           <option value={OrderStatus.PENDING}>Pending</option>
           <option value={OrderStatus.COMPLETED}>Completed</option>

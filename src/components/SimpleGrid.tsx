@@ -35,18 +35,39 @@ export function SimpleGrid<T extends IGridRow>({ data, columns, onEdit, onDelete
     }
   };
 
-  const filteredData = data.filter(row =>
-    Object.values(row).some(value =>
-      value.toString().toLowerCase().includes(filterText.toLowerCase())
-    )
-  );
+  const filteredData = data.filter(row => {
+    // Convert the row to a searchable string including nested properties
+    const searchString = columns.map(col => {
+      const value = row[col.field];
+      if (typeof value === 'object' && value !== null) {
+        return Object.values(value).join(' ');
+      }
+      return value?.toString() || '';
+    }).join(' ').toLowerCase();
+    
+    return searchString.includes(filterText.toLowerCase());
+  });
 
   const sortedData = [...filteredData].sort((a, b) => {
     if (!sortField) return 0;
+    
     const aVal = a[sortField];
     const bVal = b[sortField];
-    if (aVal < bVal) return sortDirection === 'asc' ? -1 : 1;
-    if (aVal > bVal) return sortDirection === 'asc' ? 1 : -1;
+    
+    // Handle nested objects (like customerDetails and packageDetails)
+    const getValue = (val: any): string => {
+      if (typeof val === 'object' && val !== null) {
+        if ('name' in val) return val.name;
+        return Object.values(val).join(' ');
+      }
+      return val?.toString() || '';
+    };
+
+    const aStr = getValue(aVal);
+    const bStr = getValue(bVal);
+
+    if (aStr < bStr) return sortDirection === 'asc' ? -1 : 1;
+    if (aStr > bStr) return sortDirection === 'asc' ? 1 : -1;
     return 0;
   });
 
