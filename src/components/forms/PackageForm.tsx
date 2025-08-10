@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IPackage } from '../types';
+import { IPackage } from '../../types';
 
 type PackageFormData = {
   name: string;

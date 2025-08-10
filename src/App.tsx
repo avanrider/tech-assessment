@@ -6,7 +6,7 @@ import logo from './assets/logo.png';
 import Orders from './pages/Orders';
 import Customers from './pages/Customers';
 import Packages from './pages/Packages';
-import { Sidebar } from './components/Sidebar';
+import { Sidebar } from './components/layout/Sidebar';
 
 type RouteInfo = {
   path: string;

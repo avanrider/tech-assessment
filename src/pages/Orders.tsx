@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Plus } from 'lucide-react';
 import { useLoaderData, useRevalidator, useNavigation } from 'react-router-dom';
-import { SimpleGrid } from '../components/SimpleGrid';
-import { Modal } from '../components/Modal';
-import { OrderForm } from '../components/OrderForm';
-import { StatusBadge } from '../components/StatusBadge';
-import { Toast } from '../components/Toast';
+import { SimpleGrid } from '../components/layout/SimpleGrid';
+import { Modal } from '../components/ui/Modal';
+import { OrderForm } from '../components/forms/OrderForm';
+import { StatusBadge } from '../components/ui/StatusBadge';
+import { Toast } from '../components/ui/Toast';
 import { MockAPI } from '../utils/mockApi';
 import { IOrder, ICustomer, IPackage, OrderStatusType, ApiErrorType } from '../types';
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IOrder, ICustomer, IPackage, OrderStatus, OrderStatusType } from '../types';
+import { IOrder, ICustomer, IPackage, OrderStatus, OrderStatusType } from '../../types';
 
 type OrderFormData = {
   customerId: string;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ICustomer } from '../types';
+import { ICustomer } from '../../types';
 
 type CustomerFormData = {
   name: string;

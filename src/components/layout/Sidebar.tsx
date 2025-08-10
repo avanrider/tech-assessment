@@ -1,8 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import logo from '../assets/logo.png';
-import mobileLogo from '../assets/mobile-logo.png';
+import logo from '../../assets/logo.png';
+import mobileLogo from '../../assets/mobile-logo.png';
 
 interface RouteInfo {
   path: string;

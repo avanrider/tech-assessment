@@ -17,9 +17,18 @@ export interface SimpleGridProps<T extends IGridRow> {
   }>;
   onEdit?: (row: T) => void;
   onDelete?: (row: T) => void;
+  onRowClick?: (row: T) => void;
+  getRowClass?: (row: T) => string;
 }
 
-export function SimpleGrid<T extends IGridRow>({ data, columns, onEdit, onDelete }: SimpleGridProps<T>) {
+export function SimpleGrid<T extends IGridRow>({ 
+  data, 
+  columns, 
+  onEdit, 
+  onDelete, 
+  onRowClick,
+  getRowClass 
+}: SimpleGridProps<T>) {
   const [sortField, setSortField] = useState<keyof T | null>(null);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [filterText, setFilterText] = useState('');
@@ -107,7 +116,12 @@ export function SimpleGrid<T extends IGridRow>({ data, columns, onEdit, onDelete
           </thead>
           <tbody className="divide-y divide-gray-200">
             {paginatedData.map(row => (
-              <tr key={row.id} className="hover:bg-gray-50">
+              <tr 
+                key={row.id} 
+                className={`hover:bg-gray-50 ${getRowClass?.(row) || ''}`}
+                onClick={() => onRowClick?.(row)}
+                style={{ cursor: onRowClick ? 'pointer' : 'default' }}
+              >
                 {columns.map(col => (
                   <td key={String(col.field)} className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {col.cellRenderer ? col.cellRenderer({ value: row[col.field], data: row }) : String(row[col.field])}
