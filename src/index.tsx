@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import './index.css';
+import { ModuleRegistry, AllCommunityModule } from 'ag-grid-community';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Dashboard } from './pages/Dashboard';
@@ -11,6 +11,13 @@ import { loader as customersLoader } from './pages/Customers';
 import Customers from './pages/Customers';
 import { loader as packagesLoader } from './pages/Packages';
 import Packages from './pages/Packages';
+
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
+import './index.css';
+
+// Register AG Grid Modules
+ModuleRegistry.registerModules([AllCommunityModule]);
 
 const router = createBrowserRouter([
   {

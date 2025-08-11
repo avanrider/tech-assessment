@@ -41,8 +41,9 @@ export function CustomerForm({ customer, onSubmit, onCancel }: CustomerFormProps
   return (
     <div className="space-y-4">
       <div>
-        <label className="block text-sm font-medium text-gray-700">Name</label>
+        <label htmlFor="customer-name" className="block text-sm font-medium text-gray-700">Name</label>
         <input
+          id="customer-name"
           type="text"
           value={formData.name}
           onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
@@ -52,8 +53,9 @@ export function CustomerForm({ customer, onSubmit, onCancel }: CustomerFormProps
       </div>
       
       <div>
-        <label className="block text-sm font-medium text-gray-700">Email</label>
+        <label htmlFor="customer-email" className="block text-sm font-medium text-gray-700">Email</label>
         <input
+          id="customer-email"
           type="email"
           value={formData.email}
           onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
@@ -63,8 +65,9 @@ export function CustomerForm({ customer, onSubmit, onCancel }: CustomerFormProps
       </div>
       
       <div>
-        <label className="block text-sm font-medium text-gray-700">Phone Number (Optional)</label>
+        <label htmlFor="customer-phone" className="block text-sm font-medium text-gray-700">Phone Number (Optional)</label>
         <input
+          id="customer-phone"
           type="tel"
           value={formData.phoneNumber}
           onChange={(e) => setFormData(prev => ({ ...prev, phoneNumber: e.target.value }))}

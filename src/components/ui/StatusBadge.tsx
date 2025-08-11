@@ -9,7 +9,7 @@ export function StatusBadge({ status }: StatusBadgeProps) {
     <span className={`px-2 py-1 rounded-full text-xs ${
       status === 'completed' ? 'bg-secondary-50 text-secondary-700' :
       status === 'cancelled' ? 'bg-red-100 text-red-800' :
-      'bg-accent-50 text-accent-700'
+      'bg-accent-50 text-accent-800' /* Darkened text color for better contrast */
     }`}>
       {status}
     </span>

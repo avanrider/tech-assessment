@@ -39,8 +39,9 @@ export function OrderForm({ order, customers, packages, onSubmit, onCancel }: Or
   return (
     <div className="space-y-4">
       <div>
-        <label className="block text-sm font-medium text-gray-700">Customer</label>
+        <label htmlFor="customer-select" className="block text-sm font-medium text-gray-700">Customer</label>
         <select
+          id="customer-select"
           value={formData.customerId}
           onChange={(e) => setFormData(prev => ({ ...prev, customerId: e.target.value }))}
           className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-primary-500"
@@ -56,8 +57,9 @@ export function OrderForm({ order, customers, packages, onSubmit, onCancel }: Or
       </div>
       
       <div>
-        <label className="block text-sm font-medium text-gray-700">Package</label>
+        <label htmlFor="package-select" className="block text-sm font-medium text-gray-700">Package</label>
         <select
+          id="package-select"
           value={formData.packageId}
           onChange={(e) => setFormData(prev => ({ ...prev, packageId: e.target.value }))}
           className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-primary-500"
@@ -73,8 +75,9 @@ export function OrderForm({ order, customers, packages, onSubmit, onCancel }: Or
       </div>
       
       <div>
-        <label className="block text-sm font-medium text-gray-700">Status</label>
+        <label htmlFor="status-select" className="block text-sm font-medium text-gray-700">Status</label>
         <select
+          id="status-select"
           value={formData.status}
           onChange={(e) => setFormData(prev => ({ ...prev, status: e.target.value as OrderStatusType }))}
           className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-primary-500"

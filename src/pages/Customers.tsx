@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLoaderData, useRevalidator, useNavigation } from 'react-router-dom';
 import { Plus } from 'lucide-react';
-import { SimpleGrid } from '../components/layout/SimpleGrid';
+import { DataGrid } from '../components/layout/DataGrid';
 import { Modal } from '../components/ui/Modal';
 import { CustomerForm } from '../components/forms/CustomerForm';
 import { Toast } from '../components/ui/Toast';
@@ -126,15 +126,21 @@ export default function Customers() {
         </button>
       </div>
 
-      <SimpleGrid
-        data={customers}
-        columns={columns}
-        onEdit={(customer) => {
-          setEditCustomer(customer);
-          setModalOpen(true);
-        }}
-        onDelete={handleDelete}
-      />
+      {customers.length === 0 ? (
+        <div className="text-center text-gray-500 py-8">No customers found</div>
+      ) : (
+        <div className="min-h-[500px] border rounded-lg bg-white">
+          <DataGrid
+            data={customers}
+            columns={columns}
+            onEdit={(customer) => {
+              setEditCustomer(customer);
+              setModalOpen(true);
+            }}
+            onDelete={handleDelete}
+          />
+        </div>
+      )}
 
       <Modal
         isOpen={modalOpen}

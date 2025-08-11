@@ -1,35 +1,45 @@
-# Minimal CRUD Application
+# Nymbl Assessment App
 
-A minimal React application demonstrating CRUD operations with TypeScript, Tailwind CSS, and comprehensive testing.
+A minimal React application demonstrating CRUD operations with TypeScript, Tailwind CSS, AG Grid, and comprehensive testing.
 
 ## 🚀 Features
 
 - **React Router V7** - Client-side routing with data loading
 - **TypeScript** - Strict typing with comprehensive interfaces
 - **Tailwind CSS** - Utility-first styling framework
-- **AG Grid React** - Advanced data grid with CRUD operations
+- **AG Grid Integration** - Advanced data grid with sorting and filtering
 - **Modal Forms** - Create/Edit functionality with validation
 - **Mock API** - Simulated backend with error handling
 - **State Management** - React hooks for data management
 - **Testing** - Unit tests with Jest and React Testing Library
 - **Storybook** - Component documentation and testing
-- **CI/CD** - GitHub Actions workflow
 
 ## 📁 Project Structure
 
 ```
 src/
 ├── components/           # Reusable UI components
-│   ├── OrderForm.tsx    # Order creation/editing form
-│   └── StatusBadge.tsx  # Status indicator component
+│   ├── ui/              # Base UI components
+│   │   ├── Modal.tsx    # Modal dialog component
+│   │   ├── Toast.tsx    # Toast notifications
+│   │   └── StatusBadge.tsx  # Status indicator
+│   ├── forms/           # Form components
+│   │   ├── OrderForm.tsx    # Order management
+│   │   ├── CustomerForm.tsx # Customer management
+│   │   └── PackageForm.tsx  # Package management
+│   └── layout/          # Layout components
+│       ├── Sidebar.tsx      # Navigation sidebar
+│       └── DataGrid.tsx   # Data grid component based on AG Grid
 ├── pages/               # Page components
 │   ├── Dashboard.tsx    # Dashboard with statistics
-│   ├── Orders.tsx       # Orders management page
-│   └── Customers.tsx    # Customers listing page
-├── types/               # TypeScript type definitions
-├── api/                 # Mock API implementation
-├── __tests__/           # Test files
-└── stories/             # Storybook stories
+│   ├── Orders.tsx       # Orders management
+│   ├── Customers.tsx    # Customer management
+│   └── Packages.tsx     # Package management
+├── types/               # TypeScript definitions
+├── utils/               # Utilities
+│   └── mockApi.ts       # Mock API implementation
+├── assets/             # Images and icons
+└── stories/            # Storybook stories
 ```
 
 ## 🛠 Tech Stack
@@ -41,30 +51,6 @@ src/
 - **Documentation**: Storybook
 - **Linting**: ESLint with TypeScript rules
 - **CI/CD**: GitHub Actions
-
-## 📋 Requirements Met
-
-### ✅ Frontend Requirements
-- [x] React Router V7 implementation
-- [x] Tailwind CSS styling framework
-- [x] Strict TypeScript configuration
-- [x] AG Grid React with CRUD operations
-- [x] Sorting, filtering, and pagination
-
-### ✅ Navigation & Layout
-- [x] Left sidebar navigation
-- [x] Three distinct page routes (Dashboard, Orders, Customers)
-
-### ✅ Form Handling & Modals
-- [x] Modal dialogs for CRUD operations
-- [x] Form validation with error handling
-- [x] Tailwind CSS form components
-
-### ✅ Mock API Implementation
-- [x] JSON-based mock data strategy
-- [x] Simulated API endpoints with success/error responses
-- [x] TypeScript interfaces for request/response shapes
-- [x] CRUD operations simulation
 
 ### ✅ Core Features
 1. [x] **Routing & Data Loading** - Mock data fetching per route
@@ -187,9 +173,12 @@ GitHub Actions workflow includes:
 ```typescript
 interface IOrder {
   id: string;
-  customer: string;
+  customerId: string;
+  packageId: string;
   amount: number;
-  status: 'pending' | 'completed' | 'cancelled';
+  status: OrderStatusType;
+  createdAt: Date;
+  updatedAt: Date;
 }
 ```
 
@@ -199,23 +188,38 @@ interface ICustomer {
   id: string;
   name: string;
   email: string;
+  phone: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 ```
 
-#### Products
+#### Packages
 ```typescript
-interface IProduct {
+interface IPackage {
   id: string;
   name: string;
   price: number;
+  description?: string;
+  isAvailable: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 }
 ```
 
 ### API Response Format
 ```typescript
-type ApiResponse<T> = 
-  | { success: true; data: T }
-  | { success: false; error: string };
+type ApiResponse<T> = {
+  success: true;
+  data: T;
+  metadata?: {
+    total: number;
+    page: number;
+  };
+} | {
+  success: false;
+  error: ApiErrorType;
+};
 ```
 
 ## 🎯 Key Features Demonstrated

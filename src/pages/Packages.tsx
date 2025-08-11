@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLoaderData, useRevalidator, useNavigation } from 'react-router-dom';
 import { Plus } from 'lucide-react';
-import { SimpleGrid } from '../components/layout/SimpleGrid';
+import { DataGrid } from '../components/layout/DataGrid';
 import { Modal } from '../components/ui/Modal';
 import { PackageForm } from '../components/forms/PackageForm';
 import { Toast } from '../components/ui/Toast';
@@ -130,7 +130,7 @@ export default function Packages() {
         </button>
       </div>
 
-      <SimpleGrid
+      <DataGrid
         data={packages}
         columns={columns}
         onEdit={(pkg) => {

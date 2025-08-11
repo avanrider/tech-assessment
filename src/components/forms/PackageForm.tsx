@@ -43,8 +43,9 @@ export function PackageForm({ package: pkg, onSubmit, onCancel }: PackageFormPro
   return (
     <div className="space-y-4">
       <div>
-        <label className="block text-sm font-medium text-gray-700">Name</label>
+        <label htmlFor="package-name" className="block text-sm font-medium text-gray-700">Name</label>
         <input
+          id="package-name"
           type="text"
           value={formData.name}
           onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
@@ -54,8 +55,9 @@ export function PackageForm({ package: pkg, onSubmit, onCancel }: PackageFormPro
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Price</label>
+        <label htmlFor="package-price" className="block text-sm font-medium text-gray-700">Price</label>
         <input
+          id="package-price"
           type="number"
           min="0"
           step="0.01"
@@ -67,8 +69,9 @@ export function PackageForm({ package: pkg, onSubmit, onCancel }: PackageFormPro
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Description (Optional)</label>
+        <label htmlFor="package-description" className="block text-sm font-medium text-gray-700">Description (Optional)</label>
         <textarea
+          id="package-description"
           value={formData.description}
           onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
           rows={3}
@@ -80,9 +83,13 @@ export function PackageForm({ package: pkg, onSubmit, onCancel }: PackageFormPro
         <label className="flex items-center space-x-2">
           <input
             type="checkbox"
+            id="package-available"
             checked={formData.isAvailable}
             onChange={(e) => setFormData(prev => ({ ...prev, isAvailable: e.target.checked }))}
-            className="h-4 w-4 text-primary-500 focus:ring-primary-500 border-gray-300 rounded"
+            className="form-checkbox h-4 w-4 rounded border-gray-300
+              text-primary-500 
+              focus:ring-primary-500 focus:ring-offset-0
+              checked:bg-primary-500 checked:hover:bg-primary-600"
           />
           <span className="text-sm font-medium text-gray-700">Available</span>
         </label>

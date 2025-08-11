@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Plus } from 'lucide-react';
 import { useLoaderData, useRevalidator, useNavigation } from 'react-router-dom';
-import { SimpleGrid } from '../components/layout/SimpleGrid';
+import { DataGrid } from '../components/layout/DataGrid';
 import { Modal } from '../components/ui/Modal';
 import { OrderForm } from '../components/forms/OrderForm';
 import { StatusBadge } from '../components/ui/StatusBadge';
@@ -131,21 +131,38 @@ export default function Orders() {
   const navigation = useNavigation();
   const columns = [
     {
-      field: 'customerDetails' as keyof OrderWithDetails,
+      field: 'customerDetails.name',
       headerName: 'Customer',
       sortable: true,
-      cellRenderer: ({ value }: { value: ICustomer | undefined }) => 
-        value ? value.name : 'Unknown Customer'
+      valueGetter: (params: { data: OrderWithDetails }) => {
+        return params.data.customerDetails?.name || 'Unknown Customer';
+      },
+      cellRenderer: ({ data }: { data: OrderWithDetails }) => 
+        data.customerDetails?.name || 'Unknown Customer'
     },
     {
-      field: 'packageDetails' as keyof OrderWithDetails,
+      field: 'packageDetails.name',
       headerName: 'Package',
       sortable: true,
-      cellRenderer: ({ value }: { value: IPackage | undefined }) => 
-        value ? `${value.name} ($${value.price})` : 'Unknown Package'
+      valueGetter: (params: { data: OrderWithDetails }) => {
+        return {
+          name: params.data.packageDetails?.name || 'Unknown Package',
+          price: params.data.packageDetails?.price || 0
+        };
+      },
+      comparator: (valueA: any, valueB: any) => {
+        if (!valueA || !valueB) return 0;
+        // Sort by price
+        const priceDiff = (valueA.price || 0) - (valueB.price || 0);
+        if (priceDiff !== 0) return priceDiff;
+        // If prices are equal, sort by name
+        return (valueA.name || '').localeCompare(valueB.name || '');
+      },
+      cellRenderer: ({ data }: { data: OrderWithDetails }) => 
+        data.packageDetails ? `${data.packageDetails.name} ($${data.packageDetails.price})` : 'Unknown Package'
     },
     { 
-      field: 'status' as keyof OrderWithDetails, 
+      field: 'status', 
       headerName: 'Status',
       sortable: true,
       cellRenderer: ({ value }: { value: OrderWithDetails['status'] }) => <StatusBadge status={value} />
@@ -167,10 +184,10 @@ export default function Orders() {
         </button>
       </div>
 
-      <SimpleGrid
+      <DataGrid
         data={orders}
         columns={columns}
-        onEdit={(order) => {
+        onEdit={(order: OrderWithDetails) => {
           setEditOrder(order);
           setModalOpen(true);
         }}
