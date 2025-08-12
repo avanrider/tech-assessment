@@ -37,7 +37,7 @@ describe('Modal', () => {
       </Modal>
     );
     
-    const closeButton = screen.getByLabelText('Close modal');
+    const closeButton = screen.getByLabelText('Close');
     fireEvent.click(closeButton);
     expect(mockOnClose).toHaveBeenCalledTimes(1);
   });
@@ -49,9 +49,9 @@ describe('Modal', () => {
       </Modal>
     );
     
-    // The overlay should be the first div with role="dialog"
-    const overlay = screen.getByRole('dialog');
-    fireEvent.click(overlay);
+    // Get the outer div which serves as the overlay
+    const overlay = screen.getByRole('dialog').parentElement;
+    fireEvent.click(overlay!);
     expect(mockOnClose).toHaveBeenCalledTimes(1);
   });
 

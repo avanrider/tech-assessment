@@ -1,8 +1,8 @@
   import React from 'react';
-import { Link, useLocation, Outlet } from 'react-router-dom';
-import { ChevronRight, Home, Users, Package, Package2 } from 'lucide-react';
+import { Outlet } from 'react-router-dom';
+import { Home, Users, Package, Package2 } from 'lucide-react';
 import { Dashboard } from './pages/Dashboard';
-import logo from './assets/logo.png';
+
 
 // Import AG Grid styles
 import 'ag-grid-community/styles/ag-grid.css';

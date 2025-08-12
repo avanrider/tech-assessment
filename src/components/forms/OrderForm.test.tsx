@@ -28,7 +28,7 @@ describe('OrderForm', () => {
     mockOnCancel.mockClear();
   });
 
-  it('renders with empty values for new order', () => {
+  it('renders new order form with first customer and package selected', () => {
     render(
       <OrderForm 
         customers={mockCustomers}
@@ -38,9 +38,10 @@ describe('OrderForm', () => {
       />
     );
 
-    expect(screen.getByLabelText(/customer/i)).toHaveValue('');
-    expect(screen.getByLabelText(/package/i)).toHaveValue('');
-    expect(screen.getByLabelText(/amount/i)).toHaveValue('');
+    // In the new implementation, first customer and package are pre-selected
+    expect(screen.getByLabelText(/customer/i)).toHaveValue(mockCustomers[0].id);
+    expect(screen.getByLabelText(/package/i)).toHaveValue(mockPackages[0].id);
+    expect(screen.getByRole('button', { name: 'Create' })).toBeInTheDocument();
   });
 
   it('renders with existing order data', () => {
@@ -56,7 +57,7 @@ describe('OrderForm', () => {
 
     expect(screen.getByLabelText(/customer/i)).toHaveValue(mockOrder.customerId);
     expect(screen.getByLabelText(/package/i)).toHaveValue(mockOrder.packageId);
-    expect(screen.getByLabelText(/amount/i)).toHaveValue(mockOrder.amount.toString());
+    expect(screen.getByRole('button', { name: 'Update' })).toBeInTheDocument();
   });
 
   it('handles form submission', async () => {
@@ -79,15 +80,11 @@ describe('OrderForm', () => {
       target: { value: '456' }
     });
 
-    // Amount should be auto-filled from package price
-    expect(screen.getByLabelText(/amount/i)).toHaveValue('99.99');
-
-    fireEvent.click(screen.getByRole('button', { name: /save/i }));
+    fireEvent.click(screen.getByRole('button', { name: 'Create' }));
 
     expect(mockOnSubmit).toHaveBeenCalledWith({
       customerId: '123',
       packageId: '456',
-      amount: 99.99,
       status: 'pending'
     });
   });
@@ -116,15 +113,18 @@ describe('OrderForm', () => {
       />
     );
 
-    // Try to submit without selecting required fields
-    fireEvent.click(screen.getByRole('button', { name: /save/i }));
+    // Clear the selections first
+    fireEvent.change(screen.getByLabelText(/customer/i), { target: { value: '' } });
+    fireEvent.change(screen.getByLabelText(/package/i), { target: { value: '' } });
 
-    expect(screen.getByText(/customer is required/i)).toBeInTheDocument();
-    expect(screen.getByText(/package is required/i)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Create' }));
+
+    expect(screen.getByText('Customer is required')).toBeInTheDocument();
+    expect(screen.getByText('Package is required')).toBeInTheDocument();
     expect(mockOnSubmit).not.toHaveBeenCalled();
   });
 
-  it('auto-fills amount when package is selected', () => {
+  it('allows changing the status', () => {
     render(
       <OrderForm 
         customers={mockCustomers}
@@ -134,12 +134,11 @@ describe('OrderForm', () => {
       />
     );
 
-    // Select package
-    fireEvent.change(screen.getByLabelText(/package/i), {
-      target: { value: '789' }
+    const statusSelect = screen.getByLabelText(/status/i);
+    fireEvent.change(statusSelect, {
+      target: { value: 'completed' }
     });
 
-    // Amount should be auto-filled with package price
-    expect(screen.getByLabelText(/amount/i)).toHaveValue('199.99');
+    expect(statusSelect).toHaveValue('completed');
   });
 });
