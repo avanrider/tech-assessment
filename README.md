@@ -52,28 +52,45 @@ src/
 - **Linting**: ESLint with TypeScript rules
 - **CI/CD**: GitHub Actions
 
-### ✅ Core Features
-1. [x] **Routing & Data Loading** - Mock data fetching per route
-2. [x] **CRUD Operations** - Full create, read, update, delete flows
-3. [x] **Data Display & Interaction** - AG Grid with sorting, filtering, pagination
-4. [x] **Error Handling & Validation** - Form validation and error messages
-5. [x] **State Management** - React hooks for state management
-6. [x] **Testing** - Unit tests with 80% coverage threshold
-7. [x] **Storybook Setup** - OrderForm and StatusBadge stories
-8. [x] **CI/CD Integration** - GitHub Actions workflow
-
 ## 🚦 Getting Started
 
 ### Prerequisites
 - Node.js 18+ 
 - npm or yarn
+- Git
 
-### Installation
+### Setup
+
+1. Clone the repository
+```bash
+git clone https://github.com/avanrider/tech-assessment.git
+cd tech-assessment
+```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Start the development server
+```bash
+npm run dev
+```
+The application will be available at `http://localhost:5173`
+
+### Mock Data Setup
+The application uses an in-memory mock API implementation located in `src/utils/mockApi.ts`. This provides:
+- Simulated CRUD operations
+- Realistic response delays
+- Error scenarios for testing
+- Persistent data during the session
+- Auto-generated test data on startup
+
+No additional setup is required for the mock data - it's automatically initialized when you start the application.
+
+### Available Scripts
 
 ```bash
-# Install dependencies
-npm install
-
 # Start development server
 npm run dev
 
@@ -83,18 +100,52 @@ npm test
 # Run tests with coverage
 npm run test:coverage
 
-# Start Storybook
+# Start Storybook for component development
 npm run storybook
 
 # Build for production
 npm run build
 
-# Run linting
+# Run ESLint
 npm run lint
 
-# Type checking
+# Type checking with TypeScript
 npm run type-check
 ```
+
+### Development URLs
+- Main Application: http://localhost:5173
+- Storybook: http://localhost:6006 (after running npm run storybook)
+
+### Demo Data & Testing Scenarios
+
+The mock API provides several pre-configured scenarios for testing:
+
+#### Orders
+- Create new orders with validation
+- Edit existing orders
+- Delete orders (with confirmation)
+- View order status and details
+- Sort by customer name, package, or status
+
+#### Packages
+- Add new service packages
+- Set package availability
+- Update pricing
+- View order statistics per package
+- Cannot delete packages with active orders
+
+#### Customers
+- Add new customers
+- Edit customer details
+- View customer order history
+- Test form validation rules
+
+#### Error Scenarios
+- Try deleting a package with active orders
+- Submit invalid form data to see validation
+- Test network error simulation
+- Handle concurrent updates
 
 ## 🧪 Testing
 
@@ -129,41 +180,6 @@ npm run storybook
 
 Visit `http://localhost:6006` to view the component library.
 
-## 🔧 Configuration Files
-
-### TypeScript Configuration
-- `tsconfig.json` - Strict TypeScript settings
-- Enabled: `noImplicitAny`, `strictNullChecks`, `strictFunctionTypes`
-
-### ESLint Configuration
-- TypeScript-aware linting rules
-- React and React Hooks plugin integration
-- Custom rules for code quality
-
-### Jest Configuration
-- 80% coverage threshold requirement
-- Setup for React Testing Library
-- Mock configurations for API calls
-
-### Tailwind CSS
-- Utility-first CSS framework
-- Custom color palette extension
-- Responsive design utilities
-
-## 🚀 CI/CD Pipeline
-
-GitHub Actions workflow includes:
-
-1. **Linting** - ESLint code quality checks
-2. **Type Checking** - TypeScript compiler validation
-3. **Testing** - Unit tests with coverage enforcement
-4. **Build** - Production build verification
-
-### Coverage Requirements
-- **Branches**: 80%
-- **Functions**: 80%
-- **Lines**: 80%
-- **Statements**: 80%
 
 ## 📖 API Documentation
 
@@ -222,38 +238,6 @@ type ApiResponse<T> = {
 };
 ```
 
-## 🎯 Key Features Demonstrated
-
-### 1. TypeScript Rigor
-- Comprehensive interface definitions
-- Discriminated unions for error handling
-- Generic `IGridRow` interface for data consistency
-- Strict compiler options enforced
-
-### 2. CRUD Operations
-- **Create**: Add new orders via modal form
-- **Read**: Display data in AG Grid with pagination
-- **Update**: Edit existing orders inline
-- **Delete**: Remove orders with confirmation
-
-### 3. Data Grid Features
-- **Sorting**: Click column headers to sort
-- **Filtering**: Global search across all columns
-- **Pagination**: Navigate through data pages
-- **Custom Renderers**: Status badges and action buttons
-
-### 4. Form Validation
-- Required field validation
-- Numeric validation for amounts
-- Real-time error feedback
-- Submit prevention on validation errors
-
-### 5. Error Handling
-- Graceful API error handling
-- User-friendly error messages
-- Toast notifications for operations
-- Loading states during async operations
-
 ## 🏗 Architecture Decisions
 
 ### State Management
@@ -281,14 +265,6 @@ See `STYLE_GUIDE.md` for detailed coding standards including:
 - Component layout standards
 - TypeScript best practices
 - Tailwind CSS usage guidelines
-
-## 🤝 Contributing
-
-1. Follow the established coding standards in `STYLE_GUIDE.md`
-2. Ensure all tests pass and coverage meets threshold
-3. Add tests for new functionality
-4. Update Storybook stories for new components
-5. Run linting before submitting changes
 
 ## 📄 License
 
