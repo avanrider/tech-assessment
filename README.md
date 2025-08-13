@@ -74,7 +74,7 @@ npm install
 
 3. Start the development server
 ```bash
-npm run dev
+npm start
 ```
 The application will be available at `http://localhost:5173`
 
@@ -92,7 +92,7 @@ No additional setup is required for the mock data - it's automatically initializ
 
 ```bash
 # Start development server
-npm run dev
+npm start
 
 # Run tests
 npm test

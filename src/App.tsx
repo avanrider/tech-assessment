@@ -2,15 +2,6 @@
 import { Outlet } from 'react-router-dom';
 import { Home, Users, Package, Package2 } from 'lucide-react';
 import { Dashboard } from './pages/Dashboard';
-
-
-// Import AG Grid styles
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css';
-
-// Import AG Grid styles globally
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css';
 import Orders from './pages/Orders';
 import Customers from './pages/Customers';
 import Packages from './pages/Packages';

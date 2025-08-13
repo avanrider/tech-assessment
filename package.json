@@ -77,5 +77,6 @@
     "react-refresh": "^0.14.0",
     "storybook": "^7.6.6",
     "webpack": "^5.101.0"
-  }
+  },
+  "homepage": "."
 }
